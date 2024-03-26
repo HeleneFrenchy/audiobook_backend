@@ -48,10 +48,12 @@ export const loginController = async (req, res) => {
 
 export const updateProfileController = async (req, res) => {
   try {
-    const updatedUser = await updateProfile(req.body);
-    res
-      .status(200)
-      .json({ message: "Profile updated successfully", updatedUser });
+    const updatedUser = await updateProfile(req.user.userId, req.body);
+    if (!updatedUser) {
+      return res.status(404).json("User not found");
+    }
+
+    res.status(200).json({ message: "Profile updated successfully" });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

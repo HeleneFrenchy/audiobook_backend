@@ -7,11 +7,10 @@ export const authenticateJWT = (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     try {
-      const user = verifyToken(token);
-      req.user = user;
+      req.user = verifyToken(token);
       next();
     } catch (err) {
-      console.log(err);
+      console.error("Unauthorized access", err);
       return res.sendStatus(403);
     }
   } else {

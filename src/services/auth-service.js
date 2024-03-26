@@ -35,13 +35,11 @@ export const verifyToken = (token) => {
   return jwt.verify(token, accessTokenSecret);
 };
 
-export const updateProfile = (userData) => {
-  const { userId, username, email, password } = userData;
-  const updatedUser = UserModel.findByIdAndUpdate(
-    userId,
-    { username, email, password },
-    { new: true }
-  );
+export const updateProfile = (userId, userData) => {
+  console.log(userId, userData);
+  const updatedUser = UserModel.findByIdAndUpdate(userId, userData, {
+    new: true,
+  });
   return updatedUser;
 };
 
