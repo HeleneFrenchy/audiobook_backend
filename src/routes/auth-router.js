@@ -1,6 +1,6 @@
 import express from "express";
-import authController from "../controllers/auth-controller";
-import { authenticateJWT } from "../middleware/auth";
+import * as authController from "../controllers/auth-controller.js";
+import { authenticateJWT } from "../middleware/auth.js";
 
 const authRouter = express.Router();
 
@@ -23,5 +23,4 @@ authRouter.put(
 // Password Forgotten
 // authRouter.post("/forgot-password", authController.forgotPasswordController);
 
-export default router;
-
+export default authRouter;

@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import authRouter from "./routes/auth-router";
+import authRouter from "./routes/auth-router.js";
 import "dotenv/config";
 
 const app = express();
-
 
 app.use(bodyParser.json());
 

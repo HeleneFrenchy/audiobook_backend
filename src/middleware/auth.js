@@ -1,6 +1,6 @@
-import { verifyToken }from "../services/auth-service";
+import { verifyToken } from "../services/auth-service.js";
 
-const authenticateJWT = (req, res, next) => {
+export const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
@@ -17,7 +17,4 @@ const authenticateJWT = (req, res, next) => {
   } else {
     res.sendStatus(401);
   }
-};
-module.exports = {
-  authenticateJWT,
 };

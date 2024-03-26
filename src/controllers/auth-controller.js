@@ -6,7 +6,6 @@ import {
   updateProfile,
   generateToken,
 } from "../services/auth-service.js";
-import {authenticateJWT} from "../middleware/auth";
 
 export const signUpController = async (req, res) => {
   try {
@@ -47,7 +46,7 @@ export const loginController = async (req, res) => {
   }
 };
 
- export const updateProfileController = async (req, res) => {
+export const updateProfileController = async (req, res) => {
   try {
     const updatedUser = await updateProfile(req.body);
     res
@@ -77,5 +76,3 @@ export const loginController = async (req, res) => {
 //     res.status(500).json({ error: "Internal server error" });
 //   }
 // };
-
-

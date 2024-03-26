@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 2;
-import { UserModel } from "../models/User";
+import { UserModel } from "../models/User.js";
 
 const accessTokenSecret = "Booksaregreat!24";
 
@@ -12,15 +12,15 @@ export const hashPassword = (password) => {
   return hashedPassword;
 };
 
- export const createUser = (email, password, username) => {
+export const createUser = (email, password, username) => {
   return UserModel.create({ email, password, username });
 };
 
- export const checkIfUserExists = (email) => {
+export const checkIfUserExists = (email) => {
   return UserModel.findOne({ email: email });
 };
 
- export const comparePassword = (password, hashedPassword) => {
+export const comparePassword = (password, hashedPassword) => {
   return bcrypt.compareSync(password, hashedPassword);
 };
 
@@ -80,4 +80,3 @@ export const updateProfile = (userData) => {
 // };
 
 // const generateResetToken = () => {};
-
