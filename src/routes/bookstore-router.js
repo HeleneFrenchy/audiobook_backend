@@ -4,26 +4,29 @@ const bookstoreRouter = express.Router();
 import bookstoreController from "../controllers/bookstoreController";
 
 // Get All Books from Bookstore
-bookstoreRouter.get("/bookstore", bookstoreController.getAllBooks);
+bookstoreRouter.get("/bookstore/:bookstoreId", bookstoreController.getAllBooks);
 
 // Get Books by Filter
-bookstoreRouter.get("/bookstore/filter", bookstoreController.getBooksByFilter);
+bookstoreRouter.get(
+  "/bookstore?title=...&genre=...&language=...&price=...&age=...",
+  bookstoreController.getBooksByFilter
+);
 
-// Buy a Book
+// Add book to cart
 bookstoreRouter.post(
-  "/bookstore/:bookId/purchase",
+  "/bookstore/:bookId/add-to-cart",
   bookstoreController.purchaseBook
 );
 
-// Create Bookstore Publisher Page
-bookstoreRouter.post(
-  "/bookstore/publisher",
-  bookstoreController.createPublisherPage
-);
+// Buy a Book
+bookstoreRouter.post("/bookstore/purchase", bookstoreController.purchaseBook);
+
+// Create Bookstore
+bookstoreRouter.post("/bookstore", bookstoreController.createPublisherPage);
 
 // Add Books to Bookstore
 bookstoreRouter.post(
-  "/bookstore/:bookId",
+  "/bookstore/add-book",
   bookstoreController.addBooksToBookstore
 );
 

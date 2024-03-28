@@ -11,13 +11,18 @@ libraryRouter.post("/library", libraryController.createLibrary);
 libraryRouter.get("/library", libraryController.getAllBooks);
 
 // Add Book to Library
-libraryRouter.post("/library/:bookId", libraryController.addBookToLibrary);
+libraryRouter.post(
+  "/library/:libraryId/:bookId",
+  libraryController.addBookToLibrary
+);
 
 // Delete Book from Library
 libraryRouter.delete(
-  "/library/:bookId",
+  "/library/:libraryId/:bookId",
   libraryController.deleteBookFromLibrary
 );
 
 // Review Book
-libraryRouter.post("/library/review/:bookId", libraryController.reviewBook);
+// libraryRouter.post("/library/review/:bookId", libraryController.reviewBook);
+
+export default libraryRouter;
