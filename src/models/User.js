@@ -18,18 +18,19 @@ let UserSchema = new mongoose.Schema({
     default: false,
   },
 
-    bookstore: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Bookstore",
-      },
-    ],
-    library: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Library",
-      },
-    ],
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book",
+    },
+  ],
+
+  cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book",
+    },
+  ],
 });
 
 export const UserModel = mongoose.model("User", UserSchema, "users");

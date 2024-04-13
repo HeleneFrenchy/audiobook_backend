@@ -46,6 +46,20 @@ export const loginController = async (req, res) => {
   }
 };
 
+export const getProfileController = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const userProfile = await Profile.findOne({ userId });
+      if (!userProfile) {
+        return res.status(404).json({ message: "Profile not found" });
+      }
+      res.status(200).json({ message: "Profile found", profile: userProfile });
+    } catch (error) {
+      console.error("Error retrieving profile:", error);
+      res.status(500).json({ error: "Failed to retrieve profile" });
+    }
+  }
+
 export const updateProfileController = async (req, res) => {
   try {
     const updatedUser = await updateProfile(req.user.userId, req.body);

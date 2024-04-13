@@ -26,7 +26,7 @@ export const comparePassword = (password, hashedPassword) => {
 
 export const generateToken = (userId) => {
   let token = jwt.sign({ userId }, accessTokenSecret, {
-    expiresIn: "1h",
+    expiresIn: "14d",
   });
   return token;
 };
