@@ -1,12 +1,17 @@
 import { UserModel } from "../models/User.js";
 import { BookModel } from "../models/Book.js";
 
-export const getAllBooks = async ({ title, age, language, price }) => {
+export const getAllBooks = async ({ title, age, language, price, author }) => {
   const filters = {};
 
   if (title) {
     filters.title = title;
   }
+
+  if (author) {
+    filters.author = author;
+  }
+
   if (age) {
     filters.age = age;
   }

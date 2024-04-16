@@ -43,6 +43,10 @@ export const updateProfile = (userId, userData) => {
   return updatedUser;
 };
 
+export const getProfile = (userId) => {
+  return UserModel.findOne({ _id: userId });
+};
+
 // export const verifyAccount = async (token) => {
 //   try {
 

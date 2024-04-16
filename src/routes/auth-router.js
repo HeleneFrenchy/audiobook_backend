@@ -18,12 +18,11 @@ authRouter.get(
 );
 
 // Update Profile
-authRouter.put(
+authRouter.patch(
   "/profile",
   authenticateJWT,
   authController.updateProfileController
 );
-
 
 // Verify Account
 // authRouter.post("/verify-account", authController.verifyAccount);
