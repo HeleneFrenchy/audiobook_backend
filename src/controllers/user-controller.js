@@ -31,6 +31,17 @@ export const deleteBookFromLibraryController = async (req, res) => {
   }
 };
 
+export const getUserCartController = async (req, res) => {
+  try {
+    const cart = await userService.getCart(req.user.userId);
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error("Could not retrieve cart", error);
+
+    res.status(500).send({ error: "Internal server error" });
+  }
+};
+
 export const AddToCartBookController = async (req, res) => {
   try {
     const bookId = req.params.bookId;
@@ -38,6 +49,18 @@ export const AddToCartBookController = async (req, res) => {
     res.status(200).json({ message: "Book added to cart" });
   } catch (error) {
     console.error("Could not add book to cart", error);
+
+    res.status(500).send({ error: "Internal server error" });
+  }
+};
+
+export const DeleteFromCartBookController = async (req, res) => {
+  try {
+    const bookId = req.params.bookId;
+    await userService.deleteFromCartBook(req.user.userId, bookId);
+    res.status(200).json({ message: "Book deleted from cart" });
+  } catch (error) {
+    console.error("Could not remove book from cart", error);
 
     res.status(500).send({ error: "Internal server error" });
   }

@@ -16,9 +16,18 @@ userRouter.delete(
   "/books/:bookId",authenticateJWT,
   userController.deleteBookFromLibraryController
 );
+userRouter.get(
+  "/cart",
+  authenticateJWT,
+  userController.getUserCartController
+);
+
 
 // Add book to cart
-userRouter.post("/:bookId/add-to-cart",authenticateJWT, userController.AddToCartBookController);
+userRouter.post("/:bookId/cart",authenticateJWT, userController.AddToCartBookController);
+
+// delete book from cart
+userRouter.delete("/:bookId/cart",authenticateJWT, userController.DeleteFromCartBookController);
 
 // Buy a Book
 userRouter.post("/purchase",authenticateJWT, userController.purchaseBookController);
