@@ -8,8 +8,6 @@ import { authenticateJWT } from "../middleware/auth-middleware.js";
 // Get All Books from User Library
 userRouter.get("/books", authenticateJWT, userController.getAllBooksUserController);
 
-// Add Book to User Library
-userRouter.post("/books",authenticateJWT, userController.addBookToLibraryController);
 
 // Delete Book from User Library
 userRouter.delete(

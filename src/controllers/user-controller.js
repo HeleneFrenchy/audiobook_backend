@@ -3,19 +3,8 @@ import * as userService from "../services/user-service.js";
 export const getAllBooksUserController = async (req, res) => {
   try {
     const books = await userService.getAllBooksUser(req.user.userId);
-    res.status(200).json({ books });
+    res.status(200).json(books || [ ]);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-export const addBookToLibraryController = async (req, res) => {
-  try {
-    const { bookId } = req.body;
-    await userService.addBookToLibrary(req.user.userId, bookId);
-    res.status(200).json({ message: "Book added to library successfully" });
-  } catch (error) {
-    console.log("Could not add book to user library", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

@@ -2,13 +2,9 @@ import { UserModel } from "../models/User.js";
 import { BookModel } from "../models/Book.js";
 
 export const getAllBooksUser = async (userId) => {
-  const user = await UserModel.find({ _id: userId });
+  const user = await UserModel.findOne({ _id: userId });
+  console.log(user);
   return user.books;
-};
-
-export const addBookToLibrary = async (userId, bookId) => {
-  await UserModel.updateOne({ _id: userId }, { $addToSet: { books: bookId } });
-  return true;
 };
 
 export const addBooksToLibrary = async (userId, bookIds) => {
@@ -29,11 +25,7 @@ export const addToCartBook = async (userId, bookId) => {
 };
 
 export const deleteFromCartBook = async (userId, bookId) => {
-  console.log(userId, bookId);
-  await UserModel.updateOne(
-    { _id: "6618f5173da5fc5590a28566" },
-    { $pull: { cart: "6618ea364e47745a27025531" } }
-  );
+  await UserModel.updateOne({ _id: userId }, { $pull: { cart: bookId } });
 };
 
 export const getCart = async (userId) => {
