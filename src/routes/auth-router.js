@@ -27,7 +27,7 @@ authRouter.patch(
 // Verify Account
 // authRouter.post("/verify-account", authController.verifyAccount);
 
-// Password Forgotten
-// authRouter.post("/forgot-password", authController.forgotPasswordController);
+//Password Forgotten
+authRouter.post("/forgot-password", authController.forgotPasswordController);
 
 export default authRouter;

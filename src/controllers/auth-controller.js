@@ -85,11 +85,11 @@ export const updateProfileController = async (req, res) => {
 // };
 
 // TODO : needs to be sychroniszed with email service
-// export const forgotPasswordController = async (req, res) => {
-//   try {
-//     await authService.forgotPassword(req.body.email);
-//     res.status(200).json({ message: "Password reset email sent successfully" });
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// };
+export const forgotPasswordController = async (req, res) => {
+  try {
+    await authService.forgotPassword(req.body.email);
+    res.status(200).json({ message: "Password reset email sent successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

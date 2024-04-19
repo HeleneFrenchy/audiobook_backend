@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import authRouter from "./routes/auth-router.js";
 import bookRouter from "./routes/book-router.js";
 import userRouter from "./routes/user-router.js";
+import helmet from "helmet";
 
 
 import cors from "cors";
@@ -11,6 +12,7 @@ import "dotenv/config";
 
 const app = express();
 
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors());
 
