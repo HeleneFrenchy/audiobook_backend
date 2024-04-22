@@ -63,22 +63,22 @@ export const getProfile = (userId) => {
 //   }
 // };
 
-// export const forgotPassword = async (email) => {
-//   try {
-//     const user = await User.findOne({ email });
-//     if (!user) {
-//       throw new Error("User with the provided email address not found");
-//     }
-//     const resetToken = generateResetToken();
+export const forgotPassword = async (email) => {
+  try {
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      throw new Error("User with the provided email address not found");
+    }
+    const resetToken = generateResetToken();
 
-//     user.resetPasswordToken = resetToken;
-//     user.resetPasswordExpires = Date.now() + 3600000;
-//     await user.save();
-//     await sendPasswordResetEmail(user.email, resetToken);
-//     return;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000;
+    await user.save();
+    await sendPasswordResetEmail(user.email, resetToken);
+    return;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // const generateResetToken = () => {};
