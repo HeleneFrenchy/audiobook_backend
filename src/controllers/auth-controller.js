@@ -74,22 +74,3 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
-// TODO: needs to be sychroniszed with email service & token?
-// export const verifyAccountController = async (req, res) => {
-//   try {
-//     await authService.verifyAccount(req.body.token);
-//     res.status(200).json({ message: "Account verified successfully" });
-//   } catch (error) {
-//     res.status(400).json({ error: "Bad request" });
-//   }
-// };
-
-// TODO : needs to be sychroniszed with email service
-export const forgotPasswordController = async (req, res) => {
-  try {
-    await authService.forgotPassword(req.body.email);
-    res.status(200).json({ message: "Password reset email sent successfully" });
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
-};

@@ -1,14 +1,13 @@
 import express from "express";
 import * as userController from "../controllers/user-controller.js";
 import { authenticateJWT } from "../middleware/auth-middleware.js";
-import validateRequest from "../middleware/validationMiddleware.js";
+import validateRequest from "../joi/validationMiddleware.js";
 
 import {
-  getAllBooksUserQuerySchema,
   deleteBookSchema,
   addToCartSchema,
   deleteFromCartSchema,
-} from "../validationSchemas.js";
+} from "../joi/validationSchemas.js";
 
 const userRouter = express.Router();
 

@@ -1,5 +1,3 @@
-import Joi from "joi";
-
 const validateRequest = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body);
@@ -8,7 +6,7 @@ const validateRequest = (schema) => {
         .status(400)
         .json({ error: error.details.map((detail) => detail.message) });
     }
-    next(); 
+    next();
   };
 };
 

@@ -1,12 +1,12 @@
 import express from "express";
 import * as authController from "../controllers/auth-controller.js";
 import { authenticateJWT } from "../middleware/auth-middleware.js";
-import validateRequest from '../middleware/validationMiddleware.js'; 
+import validateRequest from '../joi/validationMiddleware.js'; 
 import {
   userSchema,
   loginSchema,
   forgottenPasswordSchema,
-} from "../validationSchemas.js";
+} from "../joi/validationSchemas.js";
 
 
 const authRouter = express.Router();
@@ -31,14 +31,6 @@ authRouter.patch(
   authController.updateProfileController
 );
 
-// Verify Account
-// authRouter.post("/verify-account", authController.verifyAccount);
 
-//Password Forgotten
-authRouter.post(
-  "/forgot-password",
-  validateRequest(forgottenPasswordSchema),
-  authController.forgotPasswordController
-);
 
 export default authRouter;
