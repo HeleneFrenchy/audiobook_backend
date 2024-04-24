@@ -19,7 +19,15 @@ export const signUpController = async (req, res) => {
     // hash the password
     password = hashPassword(password);
     // Create our user in the DB
-    await createUser(email, password, username);
+    const user = await createUser(email, password, username);
+    try {
+      let token = generateToken(user.id);
+      res.status(200).send({
+        token,
+      });
+    } catch (error) {
+      res.status(500).send("Internal server error");
+    }
     res.status(201).send();
   } catch (error) {
     res.status(500).send(error.message);
@@ -63,7 +71,12 @@ export const getProfileController = async (req, res) => {
 
 export const updateProfileController = async (req, res) => {
   try {
-    const updatedUser = await updateProfile(req.user.userId, req.body);
+    const userData = { ...req.body.password };
+    if (userData.password) {
+      userData.password = hashPassword(userData.password);
+    }
+
+    const updatedUser = await updateProfile(req.user.userId, userData);
     if (!updatedUser) {
       return res.status(404).json("User not found");
     }
