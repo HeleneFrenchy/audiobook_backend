@@ -24,7 +24,7 @@ userRouter.get(
 // Delete Book from User Library
 userRouter.delete(
   "/books/:bookId",
-  validateRequest(deleteBookSchema, "params"),
+  validateRequest(deleteBookSchema),
   authenticateJWT,
   userController.deleteBookFromLibraryController
 );

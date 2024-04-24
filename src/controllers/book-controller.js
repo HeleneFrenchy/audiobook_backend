@@ -2,13 +2,15 @@ import * as bookService from "../services/book-service.js";
 
 export const getAllBooksController = async (req, res) => {
   try {
-    const { title, language, price, age,author } = req.query;
+    const { title, language, price, age,author, description, audio } = req.query;
     const allBooks = await bookService.getAllBooks({
       title,
       language,
       price,
       age,
       author,
+      description,
+      audio,
     });
 
     res.status(200).json(allBooks);

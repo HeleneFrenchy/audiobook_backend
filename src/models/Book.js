@@ -25,6 +25,17 @@ let BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  description: {
+    type: String,
+    required: true,
+  },
+
+  audio: {
+    type: String,
+    required: true,
+  },
+  
 });
 
 export const BookModel = mongoose.model("Book", BookSchema, "books");

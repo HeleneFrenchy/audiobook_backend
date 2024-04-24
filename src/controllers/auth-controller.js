@@ -54,7 +54,7 @@ export const getProfileController = async (req, res) => {
     if (!userProfile) {
       return res.status(404).json({ message: "Profile not found" });
     }
-    res.status(200).json({ message: "Profile found", profile: userProfile });
+    res.status(200).json(userProfile);
   } catch (error) {
     console.error("Error retrieving profile:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -73,4 +73,3 @@ export const updateProfileController = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
