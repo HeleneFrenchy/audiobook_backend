@@ -6,11 +6,11 @@ import bookRouter from "./routes/book-router.js";
 import userRouter from "./routes/user-router.js";
 import helmet from "helmet";
 
-
 import cors from "cors";
 import "dotenv/config";
 
 const app = express();
+const port = process.env.PORT || 3333;
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -24,11 +24,8 @@ app.use("/auth", authRouter);
 app.use("/books", bookRouter);
 app.use("/users", userRouter);
 
-
-
-
-app.listen(3001, async () => {
-  console.log(`App started on port 3001`);
+app.listen(port, async () => {
+  console.log(`App started on port ${port}`);
   await mongoose.connect(process.env.MONGODB_URI);
   console.log("Database connected");
 });
